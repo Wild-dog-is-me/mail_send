@@ -1,0 +1,43 @@
+server:
+    port: 7521
+spring:
+    application:
+        name: email_send
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://175.178.147.31:3306/mail_send?serverTimezone=Asia/Shanghai
+        username: root
+        password: Odin
+    mail:
+        default-encoding: UTF-8
+        host: smtp.qq.com
+        password: drxbjxiaacaibagd
+        port: 465
+        properties:
+            mail:
+                debug: true
+                smtp:
+                    socketFactory:
+                        class: javax.net.ssl.SSLSocketFactory
+        username: 1427774041@qq.com
+
+mybatis-plus:
+    mapper-locations: classpath:mapper/*xml
+    type-aliases-package: org.dog.server.entity
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+        map-underscore-to-camel-case: true # 数据库下划线转驼峰开启，默认关闭
+xxl:
+    job:
+        accessToken: default_token
+        admin:
+            addresses: http://175.178.147.31:8080/xxl-job-admin
+        executor:
+            address: ''
+            appname: email-send
+            ip: ''
+            logpath: ./xxl-job/logs/email_send
+            logretentiondays: 30
+            port: 9090
+logging:
+    config: classpath:logback.xml
